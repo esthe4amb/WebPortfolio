@@ -4,49 +4,55 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1.25rem 0;
-  transition: all var(--transition-base);
+  padding: 20px 0;
+  transition: all 0.3s ease;
 }
 
-.header-scrolled {
-  background: rgba(15, 15, 35, 0.95);
+.header.scrolled {
+  background: rgba(10, 10, 15, 0.9);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.75rem 0;
-}
-
-[data-theme="light"] .header-scrolled {
-  background: rgba(248, 250, 252, 0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
-  transition: transform var(--transition-fast);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-.logo:hover {
-  transform: scale(1.05);
+.logo-icon {
+  font-size: 1.75rem;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.logo-bracket {
-  color: var(--primary-color);
+.logo-text {
+  letter-spacing: -0.02em;
+}
+
+.logo-text .highlight {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav {
   display: flex;
-  gap: 2.5rem;
+  gap: 40px;
 }
 
 .nav a {
@@ -54,25 +60,23 @@
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: all var(--transition-fast);
+  transition: color 0.3s ease;
   position: relative;
-  padding: 0.25rem 0;
 }
 
 .nav a:hover {
-  color: var(--primary-color);
+  color: var(--neon-purple);
 }
 
 .nav a::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--gradient-primary);
-  transition: width var(--transition-base);
-  border-radius: 2px;
+  background: var(--gradient-main);
+  transition: width 0.3s ease;
 }
 
 .nav a:hover::after {
@@ -82,27 +86,31 @@
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
 }
 
-.theme-toggle {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.ai-badge {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-fast);
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid var(--border-glow);
+  border-radius: 50px;
+  color: var(--neon-purple);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.3s ease;
 }
 
-.theme-toggle:hover {
-  border-color: var(--primary-color);
-  background: var(--bg-elevated);
-  transform: rotate(15deg);
+.ai-badge:hover {
+  background: rgba(139, 92, 246, 0.2);
+  box-shadow: var(--glow-primary);
+}
+
+.ai-badge svg {
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .mobile-menu-btn {
@@ -112,12 +120,7 @@
   color: var(--text-primary);
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
-  transition: color var(--transition-fast);
-}
-
-.mobile-menu-btn:hover {
-  color: var(--primary-color);
+  padding: 8px;
 }
 
 @media (max-width: 768px) {
@@ -130,34 +133,27 @@
     top: 80px;
     left: 0;
     right: 0;
-    background: var(--bg-secondary);
+    background: var(--bg-card);
     flex-direction: column;
-    padding: 2rem;
-    gap: 1.5rem;
+    padding: 24px;
+    gap: 20px;
     transform: translateY(-150%);
     opacity: 0;
-    transition: all var(--transition-base);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-xl);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--border);
   }
 
-  .nav-open {
+  .nav.open {
     transform: translateY(0);
     opacity: 1;
   }
 
   .nav a {
-    font-size: 1.125rem;
-    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    padding: 12px 0;
   }
 
-  .header-actions {
-    gap: 0.5rem;
-  }
-
-  .theme-toggle {
-    width: 36px;
-    height: 36px;
-    font-size: 0.9rem;
+  .ai-badge span {
+    display: none;
   }
 }

@@ -1,132 +1,154 @@
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faCode, faRocket } from '@fortawesome/free-solid-svg-icons'
+import { faBolt, faCode, faBrain, faArrowDown, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
 import FadeIn from './FadeIn'
 import './Hero.css'
 
 function Hero() {
-  const codeLines = [
-    { text: 'const', color: 'code-keyword' },
-    { text: ' developer', color: 'code-variable' },
-    { text: ' =', color: 'code-operator' },
-    { text: ' {', color: 'code-punctuation' },
-  ]
-  const codeProperties = [
-    { text: '  name:', color: 'code-keyword', value: "'React Developer'", valueColor: 'code-string' },
-    { text: '  skills:', color: 'code-keyword', value: "['React', 'TypeScript', 'Next.js']", valueColor: 'code-array' },
-    { text: '  experience:', color: 'code-keyword', value: "'3+ years'", valueColor: 'code-string' },
-    { text: '  location:', color: 'code-keyword', value: "'Remote'", valueColor: 'code-string' },
-    { text: '  available:', color: 'code-keyword', value: 'true', valueColor: 'code-boolean' },
-  ]
-
   return (
     <section className="hero">
-      <div className="hero-background">
-        <div className="gradient-orb gradient-orb-1"></div>
-        <div className="gradient-orb gradient-orb-2"></div>
-        <div className="gradient-orb gradient-orb-3"></div>
+      {/* Фоновые эффекты */}
+      <div className="hero-bg">
+        <div className="gradient-orb orb-1"></div>
+        <div className="gradient-orb orb-2"></div>
+        <div className="gradient-orb orb-3"></div>
+        <div className="grid-overlay"></div>
       </div>
       
       <div className="container hero-content">
         <div className="hero-text">
           <FadeIn direction="up" delay={0.1}>
-            <div className="hero-badge">
-              <FontAwesomeIcon icon={faRocket} />
-              <span>Открыт для проектов</span>
-            </div>
+            <motion.div 
+              className="hero-badge"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <FontAwesomeIcon icon={faWandMagicSparkles} />
+              <span>Vibe Coding Developer</span>
+            </motion.div>
           </FadeIn>
           
           <FadeIn direction="up" delay={0.2}>
-            <p className="greeting">Привет, я</p>
+            <motion.h1 
+              className="hero-title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              Кодю в потоке<br />
+              <span className="gradient-text">с помощью AI</span>
+            </motion.h1>
           </FadeIn>
           
           <FadeIn direction="up" delay={0.3}>
-            <h1 className="name">
-              <span className="name-highlight">React</span> Разработчик
-            </h1>
+            <motion.p 
+              className="hero-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              Создаю современные веб-приложения, используя силу нейросетей. 
+              Быстрее. Умнее. Эффективнее.
+            </motion.p>
           </FadeIn>
           
           <FadeIn direction="up" delay={0.4}>
-            <p className="title">
-              Создаю современные, производительные и масштабируемые веб-приложения
-            </p>
-          </FadeIn>
-          
-          <FadeIn direction="up" delay={0.5}>
-            <p className="description">
-              Специализируюсь на разработке frontend-решений с использованием 
-              современных технологий и лучших практик индустрии
-            </p>
-          </FadeIn>
-          
-          <FadeIn direction="up" delay={0.6}>
-            <div className="hero-buttons">
-              <a href="#projects" className="btn btn-primary btn-glow">
+            <motion.div 
+              className="hero-buttons"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <a href="#projects" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCode} />
-                Смотреть работы
+                Смотреть проекты
               </a>
               <a href="#contact" className="btn btn-secondary">
                 Связаться
               </a>
-            </div>
+            </motion.div>
           </FadeIn>
           
-          <FadeIn direction="up" delay={0.7}>
-            <div className="hero-stats">
-              <div className="hero-stat">
-                <span className="hero-stat-number">3+</span>
-                <span className="hero-stat-label">Года опыта</span>
+          <FadeIn direction="up" delay={0.5}>
+            <motion.div 
+              className="hero-stats"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="stat">
+                <div className="stat-icon">
+                  <FontAwesomeIcon icon={faBolt} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-value">5x</span>
+                  <span className="stat-label">Быстрее разработки</span>
+                </div>
               </div>
-              <div className="hero-stat-divider"></div>
-              <div className="hero-stat">
-                <span className="hero-stat-number">20+</span>
-                <span className="hero-stat-label">Проектов</span>
+              <div className="stat-divider"></div>
+              <div className="stat">
+                <div className="stat-icon">
+                  <FontAwesomeIcon icon={faBrain} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-value">AI</span>
+                  <span className="stat-label">Интеграции</span>
+                </div>
               </div>
-              <div className="hero-stat-divider"></div>
-              <div className="hero-stat">
-                <span className="hero-stat-number">15+</span>
-                <span className="hero-stat-label">Клиентов</span>
+              <div className="stat-divider"></div>
+              <div className="stat">
+                <div className="stat-icon">
+                  <FontAwesomeIcon icon={faCode} />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-value">100%</span>
+                  <span className="stat-label">Чистый код</span>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </FadeIn>
         </div>
         
-        <FadeIn direction="left" delay={0.5}>
-          <div className="hero-image">
-            <motion.div 
-              className="code-block"
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="code-header">
-                <div className="code-dots">
-                  <span className="code-dot red"></span>
-                  <span className="code-dot yellow"></span>
-                  <span className="code-dot green"></span>
+        <FadeIn direction="right" delay={0.6}>
+          <motion.div 
+            className="hero-visual"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <div className="code-window">
+              <div className="window-header">
+                <div className="window-dots">
+                  <span className="dot red"></span>
+                  <span className="dot yellow"></span>
+                  <span className="dot green"></span>
                 </div>
-                <span className="code-title">developer.js</span>
+                <span className="window-title">ai-assistant.js</span>
               </div>
-              <pre>
-                <code>
-                  <div className="code-line">
-                    {codeLines.map((line, i) => (
-                      <span key={i} className={line.color}>{line.text}</span>
-                    ))}
-                  </div>
-                  {codeProperties.map((prop, i) => (
-                    <div key={i} className="code-line">
-                      <span className={prop.color}>{prop.text}</span>
-                      <span className={prop.valueColor}>{prop.value}</span>
-                      <span className="code-punctuation">{i < codeProperties.length - 1 ? ',' : ''}</span>
-                    </div>
-                  ))}
-                  <div className="code-line">
-                    <span className="code-punctuation">{'};'}</span>
-                  </div>
-                </code>
-              </pre>
-            </motion.div>
-          </div>
+              <div className="window-content">
+                <pre>
+                  <code>
+                    <span className="code-keyword">const</span> <span className="code-func">developer</span> = {'{'}
+                    {'\n'}  <span className="code-prop">mode</span>: <span className="code-string">'vibe coding'</span>,
+                    {'\n'}  <span className="code-prop">aiTools</span>: [
+                    {'\n'}    <span className="code-string">'Cursor'</span>,
+                    {'\n'}    <span className="code-string">'Claude'</span>,
+                    {'\n'}    <span className="code-string">'GitHub Copilot'</span>
+                    {'\n'}  ],
+                    {'\n'}  <span className="code-prop">productivity</span>: <span className="code-number">100</span>,
+                    {'\n'}  <span className="code-prop">flow</span>: <span className="code-bool">true</span>
+                    {'\n'}
+                    {'}'};
+                    {'\n\n'}
+                    <span className="code-comment">// Let the AI handle the complexity</span>
+                    {'\n'}
+                    <span className="code-keyword">export default</span> <span className="code-func">developer</span>;
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </motion.div>
         </FadeIn>
       </div>
       

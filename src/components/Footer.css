@@ -1,17 +1,17 @@
 .footer {
-  padding: 4rem 0 2rem;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
+  padding: 64px 0 32px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
   position: relative;
 }
 
 .footer-content {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
+  gap: 48px;
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
 }
 
 .footer-brand {
@@ -19,17 +19,29 @@
 }
 
 .footer-logo {
-  display: inline-block;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   text-decoration: none;
-  margin-bottom: 1rem;
-  transition: transform var(--transition-fast);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
-.footer-logo:hover {
-  transform: scale(1.05);
+.logo-icon {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 1.75rem;
+}
+
+.logo-text .highlight {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .footer-tagline {
@@ -39,36 +51,38 @@
 }
 
 .footer-social-title {
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
 }
 
 .social-links {
   display: flex;
-  gap: 0.75rem;
+  gap: 12px;
 }
 
 .social-link {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   color: var(--text-secondary);
   font-size: 1.25rem;
-  transition: all var(--transition-fast);
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .social-link:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
+  background: var(--neon-purple);
+  border-color: var(--neon-purple);
   color: white;
-  transform: translateY(-3px);
 }
 
 .footer-bottom {
@@ -76,7 +90,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .copyright {
@@ -89,7 +103,7 @@
   font-size: 0.9375rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .heart-icon {
@@ -97,50 +111,35 @@
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-}
-
 .scroll-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 50px;
-  height: 50px;
-  background: var(--gradient-primary);
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  background: var(--gradient-main);
   border: none;
   border-radius: 50%;
   color: white;
   font-size: 1.25rem;
   cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
   z-index: 999;
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
 }
 
 .scroll-top:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-xl), 0 0 30px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 15px 50px rgba(139, 92, 246, 0.5);
 }
 
 @media (max-width: 768px) {
   .footer {
-    padding: 3rem 0 1.5rem;
+    padding: 48px 0 24px;
   }
 
   .footer-content {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 32px;
     text-align: center;
   }
 
@@ -149,6 +148,7 @@
   }
 
   .footer-logo {
+    justify-content: center;
     font-size: 1.25rem;
   }
 
@@ -168,9 +168,9 @@
   }
 
   .scroll-top {
-    width: 44px;
-    height: 44px;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    width: 48px;
+    height: 48px;
+    bottom: 24px;
+    right: 24px;
   }
 }

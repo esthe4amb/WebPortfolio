@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faXmark, faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faXmark, faRobot, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons'
+import FadeIn from './FadeIn'
 import './Header.css'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,31 +17,28 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-
   const navLinks = [
     { href: '#about', label: 'Обо мне' },
-    { href: '#skills', label: 'Навыки' },
+    { href: '#stack', label: 'Стек' },
     { href: '#projects', label: 'Проекты' },
     { href: '#contact', label: 'Контакты' },
   ]
 
   return (
-    <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container header-content">
-        <a href="#" className="logo">
-          <span className="logo-bracket">&lt;</span>
-          Dev
-          <span className="logo-bracket">/&gt;</span>
-        </a>
+        <motion.a 
+          href="#" 
+          className="logo"
+          whileHover={{ scale: 1.05 }}
+        >
+          <FontAwesomeIcon icon={faRobot} className="logo-icon" />
+          <span className="logo-text">
+            AI<span className="highlight">Dev</span>
+          </span>
+        </motion.a>
         
-        <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
+        <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
           {navLinks.map((link) => (
             <a 
               key={link.href} 
@@ -53,18 +51,18 @@ function Header() {
         </nav>
 
         <div className="header-actions">
-          <button 
-            className="theme-toggle" 
-            onClick={toggleTheme}
-            aria-label="Переключить тему"
+          <motion.button 
+            className="ai-badge"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
-          </button>
+            <FontAwesomeIcon icon={faWandMagicSparkles} />
+            <span>AI-Powered</span>
+          </motion.button>
           
           <button 
             className="mobile-menu-btn" 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Меню"
           >
             <FontAwesomeIcon icon={isMenuOpen ? faXmark : faBars} />
           </button>

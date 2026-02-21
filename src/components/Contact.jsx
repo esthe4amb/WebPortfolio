@@ -1,17 +1,8 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { 
-  faEnvelope, 
-  faPaperPlane, 
-  faCheck, 
-  faExclamationCircle 
-} from '@fortawesome/free-solid-svg-icons'
-import { 
-  faTelegram, 
-  faGithub, 
-  faLinkedin,
-  faWhatsapp
-} from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope, faPaperPlane, faCheck, faRobot } from '@fortawesome/free-solid-svg-icons'
+import { faTelegram, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import FadeIn from './FadeIn'
 import './Contact.css'
 
@@ -22,29 +13,22 @@ function Contact() {
     subject: '',
     message: '',
   })
-  const [status, setStatus] = useState('idle') // idle, loading, success, error
+  const [status, setStatus] = useState('idle')
 
   const contactMethods = [
     {
       icon: faEnvelope,
       label: 'Email',
-      value: 'hello@example.com',
-      href: 'mailto:hello@example.com',
+      value: 'hello@aidev.com',
+      href: 'mailto:hello@aidev.com',
       color: '#ea4335',
     },
     {
       icon: faTelegram,
       label: 'Telegram',
-      value: '@username',
-      href: 'https://t.me/username',
+      value: '@aidev',
+      href: 'https://t.me/aidev',
       color: '#0088cc',
-    },
-    {
-      icon: faWhatsapp,
-      label: 'WhatsApp',
-      value: '+1 234 567 8900',
-      href: 'https://wa.me/12345678900',
-      color: '#25d366',
     },
     {
       icon: faGithub,
@@ -57,7 +41,7 @@ function Contact() {
       icon: faLinkedin,
       label: 'LinkedIn',
       value: 'LinkedIn',
-      href: 'https://linkedin.com/in/username',
+      href: 'https://linkedin.com/in/aidev',
       color: '#0077b5',
     },
   ]
@@ -73,14 +57,11 @@ function Contact() {
     e.preventDefault()
     setStatus('loading')
     
-    // Имитация отправки формы
     setTimeout(() => {
       setStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
       
-      setTimeout(() => {
-        setStatus('idle')
-      }, 5000)
+      setTimeout(() => setStatus('idle'), 5000)
     }, 1500)
   }
 
@@ -93,7 +74,7 @@ function Contact() {
         
         <FadeIn delay={0.2}>
           <p className="section-subtitle">
-            Открыт для новых проектов и интересных предложений
+            Готов обсудить ваш следующий проект
           </p>
         </FadeIn>
 
@@ -101,18 +82,19 @@ function Contact() {
           <FadeIn delay={0.3}>
             <div className="contact-methods">
               {contactMethods.map((method) => (
-                <a 
+                <motion.a 
                   key={method.label}
                   href={method.href}
                   className="contact-method-card"
                   target="_blank"
                   rel="noopener noreferrer"
+                  whileHover={{ y: -4, borderColor: method.color }}
                   style={{ '--accent-color': method.color }}
                 >
                   <div 
                     className="method-icon"
                     style={{ 
-                      background: `rgba(${hexToRgb(method.color)}, 0.1)`,
+                      background: `${method.color}15`,
                       color: method.color 
                     }}
                   >
@@ -122,7 +104,7 @@ function Contact() {
                     <span className="method-label">{method.label}</span>
                     <span className="method-value">{method.value}</span>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
           </FadeIn>
@@ -134,7 +116,13 @@ function Contact() {
           </FadeIn>
 
           <FadeIn delay={0.5}>
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <motion.form 
+              className="contact-form" 
+              onSubmit={handleSubmit}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">Имя</label>
@@ -188,14 +176,14 @@ function Contact() {
                 />
               </div>
 
-              <button 
+              <motion.button 
                 type="submit" 
                 className={`btn btn-primary btn-submit ${status}`}
                 disabled={status === 'loading' || status === 'success'}
+                whileHover={{ scale: status === 'idle' ? 1.02 : 1 }}
+                whileTap={{ scale: status === 'idle' ? 0.98 : 1 }}
               >
-                {status === 'loading' && (
-                  <span className="spinner"></span>
-                )}
+                {status === 'loading' && <span className="spinner"></span>}
                 {status === 'success' && (
                   <>
                     <FontAwesomeIcon icon={faCheck} />
@@ -204,32 +192,17 @@ function Contact() {
                 )}
                 {status === 'idle' && (
                   <>
-                    <FontAwesomeIcon icon={faPaperPlane} />
-                    Отправить сообщение
+                    <FontAwesomeIcon icon={faRobot} />
+                    Отправить с AI
                   </>
                 )}
-              </button>
-
-              {status === 'error' && (
-                <div className="form-error">
-                  <FontAwesomeIcon icon={faExclamationCircle} />
-                  Произошла ошибка. Попробуйте позже.
-                </div>
-              )}
-            </form>
+              </motion.button>
+            </motion.form>
           </FadeIn>
         </div>
       </div>
     </section>
   )
-}
-
-function hexToRgb(hex) {
-  if (hex === '#ffffff') return '255, 255, 255'
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  return result 
-    ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-    : '100, 100, 100'
 }
 
 export default Contact

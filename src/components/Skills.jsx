@@ -1,20 +1,13 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
-  faReact, 
-  faJs, 
-  faHtml5, 
-  faCss3Alt, 
-  faGitAlt, 
-  faNodeJs,
-  faPython,
-  faDocker
+  faReact, faJs, faNodeJs, faGitAlt, faDocker, 
+  faPython, faAws, faGithub
 } from '@fortawesome/free-brands-svg-icons'
 import { 
-  faDatabase, 
-  faServer, 
-  faCodeBranch,
-  faTerminal
+  faBrain, faDatabase, faServer, faCode, 
+  faTerminal, faBolt, faWandMagicSparkles
 } from '@fortawesome/free-solid-svg-icons'
 import FadeIn from './FadeIn'
 import './Skills.css'
@@ -23,10 +16,10 @@ function Skills() {
   const [activeCategory, setActiveCategory] = useState('all')
 
   const categories = [
-    { id: 'all', label: 'Все' },
-    { id: 'frontend', label: 'Frontend' },
-    { id: 'backend', label: 'Backend' },
-    { id: 'tools', label: 'Инструменты' },
+    { id: 'all', label: 'Все', icon: faWandMagicSparkles },
+    { id: 'frontend', label: 'Frontend', icon: faCode },
+    { id: 'ai', label: 'AI Tools', icon: faBrain },
+    { id: 'backend', label: 'Backend', icon: faServer },
   ]
 
   const skills = [
@@ -36,95 +29,95 @@ function Skills() {
       category: 'frontend', 
       icon: faReact,
       color: '#61dafb',
-      description: 'Hooks, Context, Redux, Router'
+      description: 'Hooks, Context, Redux, RTK',
     },
     { 
       name: 'TypeScript', 
-      level: 88, 
+      level: 90, 
       category: 'frontend', 
-      icon: faCodeBranch,
+      icon: faCode,
       color: '#3178c6',
-      description: 'Типизация, Generics, Utilities'
+      description: 'Types, Generics, Utilities',
     },
     { 
       name: 'Next.js', 
-      level: 85, 
+      level: 88, 
       category: 'frontend', 
       icon: faServer,
-      color: '#000000',
-      description: 'SSR, SSG, API Routes'
+      color: '#ffffff',
+      description: 'SSR, SSG, App Router, API',
     },
     { 
-      name: 'JavaScript', 
+      name: 'Tailwind CSS', 
       level: 92, 
       category: 'frontend', 
-      icon: faJs,
-      color: '#f7df1e',
-      description: 'ES6+, Async/Await, Modules'
+      icon: faBolt,
+      color: '#06b6d4',
+      description: 'Utility-first, Responsive',
     },
     { 
-      name: 'HTML5', 
+      name: 'Cursor IDE', 
       level: 95, 
-      category: 'frontend', 
-      icon: faHtml5,
-      color: '#e34f26',
-      description: 'Semantic, Accessibility, SEO'
+      category: 'ai', 
+      icon: faBrain,
+      color: '#10b981',
+      description: 'AI-first code editor',
     },
     { 
-      name: 'CSS3/SASS', 
+      name: 'Claude AI', 
       level: 90, 
-      category: 'frontend', 
-      icon: faCss3Alt,
-      color: '#264de4',
-      description: 'Flexbox, Grid, Animations'
+      category: 'ai', 
+      icon: faWandMagicSparkles,
+      color: '#8b5cf6',
+      description: 'Code generation & review',
+    },
+    { 
+      name: 'GitHub Copilot', 
+      level: 88, 
+      category: 'ai', 
+      icon: faGithub,
+      color: '#6e5494',
+      description: 'AI pair programmer',
     },
     { 
       name: 'Node.js', 
-      level: 75, 
+      level: 80, 
       category: 'backend', 
       icon: faNodeJs,
       color: '#339933',
-      description: 'Express, REST APIs, WebSocket'
-    },
-    { 
-      name: 'Python', 
-      level: 65, 
-      category: 'backend', 
-      icon: faPython,
-      color: '#3776ab',
-      description: 'FastAPI, Django, Scripts'
+      description: 'Express, REST, WebSocket',
     },
     { 
       name: 'PostgreSQL', 
-      level: 70, 
+      level: 75, 
       category: 'backend', 
       icon: faDatabase,
       color: '#336791',
-      description: 'Queries, Optimization, Prisma'
+      description: 'Queries, Prisma ORM',
     },
     { 
       name: 'Git', 
-      level: 88, 
-      category: 'tools', 
+      level: 90, 
+      category: 'backend', 
       icon: faGitAlt,
       color: '#f05032',
-      description: 'Branching, Rebase, Workflows'
+      description: 'Branching, Rebase, Workflows',
     },
     { 
       name: 'Docker', 
-      level: 70, 
-      category: 'tools', 
+      level: 72, 
+      category: 'backend', 
       icon: faDocker,
       color: '#2496ed',
-      description: 'Containers, Compose, Deploy'
+      description: 'Containers, Compose',
     },
     { 
-      name: 'Terminal', 
-      level: 80, 
-      category: 'tools', 
-      icon: faTerminal,
-      color: '#4eaa25',
-      description: 'Bash, Zsh, Scripting'
+      name: 'AWS', 
+      level: 65, 
+      category: 'backend', 
+      icon: faAws,
+      color: '#ff9900',
+      description: 'EC2, S3, Lambda',
     },
   ]
 
@@ -133,28 +126,31 @@ function Skills() {
     : skills.filter(skill => skill.category === activeCategory)
 
   return (
-    <section id="skills" className="skills">
+    <section id="stack" className="skills">
       <div className="container">
         <FadeIn>
-          <h2 className="section-title">Навыки</h2>
+          <h2 className="section-title">Технологии</h2>
         </FadeIn>
         
         <FadeIn delay={0.2}>
           <p className="section-subtitle">
-            Технологии и инструменты, которые я использую в работе
+            Стек технологий, который я использую для создания современных приложений
           </p>
         </FadeIn>
 
         <FadeIn delay={0.3}>
           <div className="skills-categories">
             {categories.map((category) => (
-              <button
+              <motion.button
                 key={category.id}
                 className={`category-btn ${activeCategory === category.id ? 'active' : ''}`}
                 onClick={() => setActiveCategory(category.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {category.label}
-              </button>
+                <FontAwesomeIcon icon={category.icon} />
+                <span>{category.label}</span>
+              </motion.button>
             ))}
           </div>
         </FadeIn>
@@ -162,11 +158,14 @@ function Skills() {
         <div className="skills-grid">
           {filteredSkills.map((skill, index) => (
             <FadeIn key={skill.name} delay={index * 0.05}>
-              <div className="skill-card">
+              <motion.div 
+                className="skill-card"
+                whileHover={{ y: -5, borderColor: skill.color }}
+              >
                 <div 
                   className="skill-icon" 
                   style={{ 
-                    background: `rgba(${hexToRgb(skill.color)}, 0.1)`,
+                    background: `${skill.color}15`,
                     color: skill.color 
                   }}
                 >
@@ -179,29 +178,23 @@ function Skills() {
                   </div>
                   <p className="skill-description">{skill.description}</p>
                   <div className="skill-bar">
-                    <div 
+                    <motion.div 
                       className="skill-progress" 
-                      style={{ 
-                        width: `${skill.level}%`,
-                        background: `linear-gradient(90deg, ${skill.color}, ${skill.color}aa)`
-                      }}
+                      style={{ background: skill.color }}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      viewport={{ once: true }}
                     />
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </FadeIn>
           ))}
         </div>
       </div>
     </section>
   )
-}
-
-function hexToRgb(hex) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  return result 
-    ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-    : '100, 100, 100'
 }
 
 export default Skills

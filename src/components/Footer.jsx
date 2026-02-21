@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faArrowUp, faRobot } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin, faTelegram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import './Footer.css'
 
 function Footer() {
@@ -22,9 +23,9 @@ function Footer() {
 
   const socialLinks = [
     { icon: faGithub, href: 'https://github.com/esthe4amb', label: 'GitHub' },
-    { icon: faLinkedin, href: 'https://linkedin.com/in/username', label: 'LinkedIn' },
-    { icon: faTelegram, href: 'https://t.me/username', label: 'Telegram' },
-    { icon: faTwitter, href: 'https://twitter.com/username', label: 'Twitter' },
+    { icon: faLinkedin, href: 'https://linkedin.com/in/aidev', label: 'LinkedIn' },
+    { icon: faTelegram, href: 'https://t.me/aidev', label: 'Telegram' },
+    { icon: faTwitter, href: 'https://twitter.com/aidev', label: 'Twitter' },
   ]
 
   return (
@@ -33,12 +34,13 @@ function Footer() {
         <div className="footer-content">
           <div className="footer-brand">
             <a href="#" className="footer-logo">
-              <span className="logo-bracket">&lt;</span>
-              Dev
-              <span className="logo-bracket">/&gt;</span>
+              <FontAwesomeIcon icon={faRobot} className="logo-icon" />
+              <span className="logo-text">
+                AI<span className="highlight">Dev</span>
+              </span>
             </a>
             <p className="footer-tagline">
-              Создаю современные веб-приложения с фокусом на качество и пользовательский опыт
+              Vibe Coding Developer | AI-Powered Development
             </p>
           </div>
 
@@ -46,16 +48,17 @@ function Footer() {
             <h4 className="footer-social-title">Связаться</h4>
             <div className="social-links">
               {socialLinks.map((link) => (
-                <a
+                <motion.a
                   key={link.label}
                   href={link.href}
                   className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
+                  whileHover={{ scale: 1.1, y: -3 }}
                 >
                   <FontAwesomeIcon icon={link.icon} />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -63,20 +66,26 @@ function Footer() {
 
         <div className="footer-bottom">
           <p className="copyright">
-            © {currentYear} React Developer. Все права защищены.
+            © {currentYear} AI Developer. All rights reserved.
           </p>
           <p className="footer-made-with">
-            Сделано с <FontAwesomeIcon icon={faHeart} className="heart-icon" /> используя React
+            Made with <FontAwesomeIcon icon={faHeart} className="heart-icon" /> & AI
           </p>
         </div>
 
-        <button
+        <motion.button
           className={`scroll-top ${showScrollTop ? 'visible' : ''}`}
           onClick={scrollToTop}
           aria-label="Наверх"
+          initial={false}
+          animate={{
+            opacity: showScrollTop ? 1 : 0,
+            visibility: showScrollTop ? 'visible' : 'hidden',
+            y: showScrollTop ? 0 : 20,
+          }}
         >
           <FontAwesomeIcon icon={faArrowUp} />
-        </button>
+        </motion.button>
       </div>
     </footer>
   )

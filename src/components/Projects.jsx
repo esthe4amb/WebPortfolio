@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt, faFilter } from '@fortawesome/free-solid-svg-icons'
-import { faGithub as faGithubBrand } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import FadeIn from './FadeIn'
 import './Projects.css'
 
@@ -10,68 +11,68 @@ function Projects() {
 
   const filters = [
     { id: 'all', label: 'Все' },
-    { id: 'react', label: 'React' },
-    { id: 'nextjs', label: 'Next.js' },
-    { id: 'fullstack', label: 'Fullstack' },
+    { id: 'ai', label: 'AI Projects' },
+    { id: 'web', label: 'Web Apps' },
+    { id: 'saas', label: 'SaaS' },
   ]
 
   const projects = [
     {
-      title: 'E-commerce Платформа',
-      description: 'Полнофункциональный интернет-магазин с корзиной, оплатой через Stripe и админ-панелью для управления товарами',
-      tech: ['React', 'Redux', 'Node.js', 'MongoDB', 'Stripe'],
-      category: 'fullstack',
-      image: '🛒',
+      title: 'AI Code Assistant',
+      description: 'Интеллектуальный помощник для разработчиков на базе GPT-4 с интеграцией в VS Code',
+      tech: ['React', 'Python', 'OpenAI API', 'WebSocket'],
+      category: 'ai',
+      image: '🤖',
       demoLink: '#',
       githubLink: '#',
       featured: true,
     },
     {
-      title: 'Dashboard Аналитики',
-      description: 'Интерактивная панель управления с визуализацией данных, экспортом отчётов и реальным временем обновления',
-      tech: ['React', 'TypeScript', 'Chart.js', 'Material UI', 'WebSocket'],
-      category: 'react',
+      title: 'Smart Dashboard',
+      description: 'Аналитическая панель с AI-прогнозами и автоматической генерацией отчётов',
+      tech: ['Next.js', 'TypeScript', 'Chart.js', 'TensorFlow.js'],
+      category: 'ai',
       image: '📊',
       demoLink: '#',
       githubLink: '#',
       featured: true,
     },
     {
-      title: 'Социальная Сеть',
-      description: 'Платформа для общения с постами, комментариями, уведомлениями и системой подписок',
-      tech: ['Next.js', 'Prisma', 'PostgreSQL', 'Tailwind', 'Socket.io'],
-      category: 'nextjs',
-      image: '💬',
+      title: 'E-commerce Platform',
+      description: 'Полнофункциональный магазин с AI-рекомендациями товаров и чат-ботом поддержки',
+      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+      category: 'web',
+      image: '🛒',
       demoLink: '#',
       githubLink: '#',
-      featured: false,
+      featured: true,
     },
     {
-      title: 'Task Manager Pro',
-      description: 'Приложение для управления задачами с drag-and-drop, командной работой и интеграцией с календарём',
-      tech: ['React', 'DnD Kit', 'Firebase', 'Redux Toolkit'],
-      category: 'react',
+      title: 'Task Flow Pro',
+      description: 'Умный менеджер задач с автоматической приоритизацией и AI-планированием',
+      tech: ['React', 'Firebase', 'OpenAI', 'DnD Kit'],
+      category: 'saas',
       image: '✅',
       demoLink: '#',
       githubLink: '#',
       featured: false,
     },
     {
-      title: 'Crypto Portfolio',
-      description: 'Трекер криптовалютных активов с реальными ценами, портфелем и историей транзакций',
-      tech: ['Next.js', 'TypeScript', 'CoinGecko API', 'Chart.js'],
-      category: 'nextjs',
-      image: '📈',
+      title: 'Content Generator',
+      description: 'SaaS платформа для генерации контента с помощью нейросетей',
+      tech: ['Next.js', 'FastAPI', 'GPT-4', 'PostgreSQL'],
+      category: 'saas',
+      image: '✍️',
       demoLink: '#',
       githubLink: '#',
-      featured: true,
+      featured: false,
     },
     {
-      title: 'Blog Platform',
-      description: 'Платформа для ведения блогов с Markdown-редактором, SEO-оптимизацией и комментариями',
-      tech: ['React', 'Node.js', 'PostgreSQL', 'Prisma', 'MDX'],
-      category: 'fullstack',
-      image: '✍️',
+      title: 'Crypto Tracker',
+      description: 'Трекер криптовалют с AI-предсказаниями и портфельным анализом',
+      tech: ['React', 'Python', 'CoinGecko API', 'ML'],
+      category: 'web',
+      image: '📈',
       demoLink: '#',
       githubLink: '#',
       featured: false,
@@ -94,7 +95,7 @@ function Projects() {
         
         <FadeIn delay={0.2}>
           <p className="section-subtitle">
-            Избранные проекты, демонстрирующие мои навыки и опыт
+            Избранные проекты, созданные с помощью AI и современных технологий
           </p>
         </FadeIn>
 
@@ -102,13 +103,15 @@ function Projects() {
           <div className="projects-filters">
             <FontAwesomeIcon icon={faFilter} className="filter-icon" />
             {filters.map((filter) => (
-              <button
+              <motion.button
                 key={filter.id}
                 className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
                 onClick={() => setActiveFilter(filter.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {filter.label}
-              </button>
+              </motion.button>
             ))}
           </div>
         </FadeIn>
@@ -151,14 +154,17 @@ function Projects() {
 
 function ProjectCard({ project }) {
   return (
-    <div className="project-card">
+    <motion.div 
+      className="project-card"
+      whileHover={{ y: -8 }}
+    >
       <div className="project-image">
         <span className="project-emoji">{project.image}</span>
         <div className="project-overlay">
           <div className="project-actions">
             <a 
               href={project.demoLink} 
-              className="action-btn"
+              className="action-btn primary"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -171,7 +177,7 @@ function ProjectCard({ project }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon icon={faGithubBrand} />
+              <FontAwesomeIcon icon={faGithub} />
               <span>Code</span>
             </a>
           </div>
@@ -179,6 +185,7 @@ function ProjectCard({ project }) {
       </div>
       
       <div className="project-content">
+        <div className="project-category">{project.category}</div>
         <h3 className="project-title">{project.title}</h3>
         <p className="project-description">{project.description}</p>
         
@@ -188,7 +195,7 @@ function ProjectCard({ project }) {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
