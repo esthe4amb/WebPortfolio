@@ -65,6 +65,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  width: 100%;
 }
 
 body {
@@ -74,6 +75,21 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   transition: background-color var(--transition-base), color var(--transition-base);
+  width: 100%;
+  min-width: 320px;
+  margin: 0;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  width: 100%;
 }
 
 /* Custom scrollbar */
