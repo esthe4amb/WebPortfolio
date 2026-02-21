@@ -56,13 +56,14 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   position: relative;
   z-index: 1;
+  width: 100%;
 }
 
 .hero-text {
-  max-width: 600px;
+  width: 100%;
 }
 
 .hero-badge {
